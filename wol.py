@@ -27,11 +27,13 @@ def promptUser(data):
 			if(prompt == 0):
 				done = True
 				print('Goodbye.')
+			elif(prompt <= len(data)):
+				print(f'Turning On {data[prompt]["Name"]} via WOL (MAC: {data[prompt]["MacAddress"]})')
+				send_magic_packet(data[prompt]["MacAddress"])
 			else:
-				print(f'Turning On {entry["Name"]} via WOL (MAC: {entry["MacAddress"]})')
-				send_magic_packet(entry["MacAddress"])
+				print("Invalid Input (Out of Range). Try Again")
 		except Exception as e: 
-			print("Invalid Input. Try Again")
+			print("Invalid Input (Not a Number). Try Again")
 		print()
 
 if __name__ == "__main__":
