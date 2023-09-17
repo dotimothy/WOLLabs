@@ -1,12 +1,15 @@
+#Wake On LAN Python CLI Client
+
 import csv
 from wakeonlan import send_magic_packet
+import pprint
 
 def csvToDict(csvFile,site):
 	reader = csv.DictReader(csvFile)
 	counter = 0
 	data = {}
 	for row in reader:
-		if(row['Site'] == site):
+		if(row['Site'] == site and row['WOL'] == 'Yes'):
 			counter = counter + 1
 			data[counter] = {}
 			data[counter]["Name"] = row["Name"]
