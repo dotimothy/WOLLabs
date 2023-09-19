@@ -16,7 +16,7 @@ devices = wol.csvToDict(deviceFile,'SJ')
 @app.route("/")
 def home():
 	html = '<html>\n\t<head>\n\t\t<title>TheDoLab WOL Server</title>\n\t</head>\n\n'
-	html += '\t<style>\n\t\t* { \n\t\t\tfont-family: Courier;\n\t\t\tbackground-color: black;\n\t\t}\n\t\th1,h2,label,input, button { \n\t\t\tcolor: white;\n\t\t}\n\t</style>\n\n'
+	html += '\t<style>\n\t\t* { \n\t\t\tfont-family: Courier;\n\t\t\tbackground-color: black;\n\t\t}\n\t\th1,h2,label,input, button { \n\t\t\tcolor: white;\n\t\t}\n\t\th2,label,input, button { \n\t\t\tfont-size:1.5em;\n\t\t}\n\t</style>\n\n'
 	html += '\t<script>\n\n\t\tvar checked = False;\n\t\tfunction checkAll() {\n\t\t\tchecked = !checked;\n\t\t\tvar checkboxes = document.getElementsByName("Number");\n\t\t\tfor(var i = 0; i < checkboxes.length; i++) {\n\t\t\t\tcheckboxes[i].checked = checked;\n\t\t\t}\n\t\t}\n\n\t</script>\n\n'
 	html += '\t<body>\n\n'
 	html += '\t\t<h1>TheDoLab\'s Wake On Lan Web Server</h1>\n\t\t<h2>Choose Devices to WOL:</h2>\n\n'
@@ -48,11 +48,8 @@ def upload():
 	else:
 		return redirect(url_for('home'))
 
-
 		
-
-
 # Debug if the same file as run
 if __name__ == "__main__":
 	port = int(input('Choose a Port to Host the WOL Server: '))
-	app.run(debug=True,host='0.0.0.0',port=port)
+	app.run(debug=False,host='0.0.0.0',port=port)
