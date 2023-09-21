@@ -16,7 +16,7 @@ def csvToDict(csvFile,site):
 	return data
 
 def wakeComputer(mac): 
-	for i in range(10):
+	for i in range(25):
 		send_magic_packet(mac)
 
 def promptUser(data):

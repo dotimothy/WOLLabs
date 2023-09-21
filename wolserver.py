@@ -48,7 +48,7 @@ def upload():
 			html = '<script>\n\t'
 			wolStr = 'Woke Up the Following Computers:\\n\\n'
 			for wolPC in wols: 
-				wolStr += f'{wol}. {devices[wol]["Name"]} ({devices[wol]["MacAddress"]})\\n'
+				wolStr += f'{wolPC}. {devices[wolPC]["Name"]} ({devices[wolPC]["MacAddress"]})\\n'
 				wol.wakeComputer(devices[wolPC]['MacAddress'])
 			html += f'alert(\"{wolStr}\");\n\twindow.location.replace("");\n\t</script>';
 		else: 
