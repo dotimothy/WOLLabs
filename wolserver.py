@@ -11,10 +11,19 @@ from wakeonlan import send_magic_packet
 app = Flask(__name__)
 deviceFile = open('Devices.csv',newline='')
 devices = wol.csvToDict(deviceFile,'SJ')
+deviceFile.close()
+
+def updateDevice(): 
+	global deviceFile
+	global devices
+	deviceFile = open('Devices.csv',newline='')
+	devices = wol.csvToDict(deviceFile,'SJ')
+	deviceFile.close()
 
 # Landing Page
 @app.route("/")
 def home():
+	updateDevice()
 	html = '<html>\n\t<head>\n\t\t<title>TheDoLab WOL Server</title>\n\t</head>\n\n'
 	html += '\t<style>\n\t\t* { \n\t\t\tfont-family: Courier;\n\t\t\tbackground-color: black;\n\t\t}\n\t\th1,h2,label,input, button { \n\t\t\tcolor: white;\n\t\t}\n\t\th2,label,input, button { \n\t\t\tfont-size:1.5em;\n\t\t}\n\t</style>\n\n'
 	html += '\t<script>\n\n\t\tvar checked = False;\n\t\tfunction checkAll() {\n\t\t\tchecked = !checked;\n\t\t\tvar checkboxes = document.getElementsByName("Number");\n\t\t\tfor(var i = 0; i < checkboxes.length; i++) {\n\t\t\t\tcheckboxes[i].checked = checked;\n\t\t\t}\n\t\t}\n\n\t</script>\n\n'
