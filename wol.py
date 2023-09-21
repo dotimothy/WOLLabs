@@ -2,7 +2,6 @@
 
 import csv
 from wakeonlan import send_magic_packet
-import pprint
 
 def csvToDict(csvFile,site):
 	reader = csv.DictReader(csvFile)
@@ -16,6 +15,9 @@ def csvToDict(csvFile,site):
 			data[counter]["MacAddress"] = row["MacAddress"]
 	return data
 
+def wakeComputer(mac): 
+	for i in range(10):
+		send_magic_packet(mac)
 
 def promptUser(data):
 	done = False
@@ -32,7 +34,7 @@ def promptUser(data):
 				print('Goodbye.')
 			elif(prompt <= len(data)):
 				print(f'Turning On {data[prompt]["Name"]} via WOL (MAC: {data[prompt]["MacAddress"]})')
-				send_magic_packet(data[prompt]["MacAddress"])
+				wakeComputer(data[prompt]["MacAddress"])
 			else:
 				print("Invalid Input (Out of Range). Try Again")
 		except Exception as e: 

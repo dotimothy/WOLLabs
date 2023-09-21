@@ -49,7 +49,7 @@ def upload():
 			wolStr = 'Woke Up the Following Computers:\\n\\n'
 			for wol in wols: 
 				wolStr += f'{wol}. {devices[wol]["Name"]} ({devices[wol]["MacAddress"]})\\n'
-				send_magic_packet(devices[wol]['MacAddress'])
+				wol.wakeComputer(devices[wol]['MacAddress'])
 			html += f'alert(\"{wolStr}\");\n\twindow.location.replace("");\n\t</script>';
 		else: 
 			html = '<script>\n\talert("Nothing Selected. Try Again.");\n\twindow.location.replace("");\n</script>'
