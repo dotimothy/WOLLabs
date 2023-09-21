@@ -47,9 +47,9 @@ def upload():
 		if(len(wols) != 0):
 			html = '<script>\n\t'
 			wolStr = 'Woke Up the Following Computers:\\n\\n'
-			for wol in wols: 
+			for wolPC in wols: 
 				wolStr += f'{wol}. {devices[wol]["Name"]} ({devices[wol]["MacAddress"]})\\n'
-				wol.wakeComputer(devices[wol]['MacAddress'])
+				wol.wakeComputer(devices[wolPC]['MacAddress'])
 			html += f'alert(\"{wolStr}\");\n\twindow.location.replace("");\n\t</script>';
 		else: 
 			html = '<script>\n\talert("Nothing Selected. Try Again.");\n\twindow.location.replace("");\n</script>'
