@@ -10,14 +10,16 @@ from wakeonlan import send_magic_packet
 # Creating the app 
 app = Flask(__name__)
 deviceFile = open('Devices.csv',newline='')
-devices = wol.csvToDict(deviceFile,'SJ')
+site = wol.getSite('Sites.csv')
+devices = wol.csvToDict(deviceFile,site)
 deviceFile.close()
 
 def updateDevice(): 
 	global deviceFile
 	global devices
+	global site
 	deviceFile = open('Devices.csv',newline='')
-	devices = wol.csvToDict(deviceFile,'SJ')
+	devices = wol.csvToDict(deviceFile,site)
 	deviceFile.close()
 
 # Landing Page
