@@ -18,6 +18,7 @@ def updateDevice():
 	global deviceFile
 	global devices
 	global site
+	os.system("git pull")
 	deviceFile = open('Devices.csv',newline='')
 	devices = wol.csvToDict(deviceFile,site)
 	deviceFile.close()
